@@ -1,0 +1,119 @@
+mysql> use company
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_company |
++-------------------+
+| dept              |
+| emp               |
++-------------------+
+2 rows in set (0.02 sec)
+
+mysql> select * from empl
+    -> ;
+ERROR 1146 (42S02): Table 'company.empl' doesn't exist
+mysql> select * from empl
+    -> ^C
+mysql> select * from emp;
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | Salary  | deptno | loc  |
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+14 rows in set (0.00 sec)
+
+mysql> alter table emp
+    -> add (hra numeric(10,2));
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp;
++-------+--------+-------+-----------+------+------------+---------+--------+------+------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | Salary  | deptno | loc  | hra  |
++-------+--------+-------+-----------+------+------------+---------+--------+------+------+
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL | NULL |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL | NULL |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL | NULL |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL | NULL |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL | NULL |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL | NULL |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL | NULL |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL | NULL |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL | NULL |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL | NULL |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL | NULL |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL | NULL |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL | NULL |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL | NULL |
++-------+--------+-------+-----------+------+------------+---------+--------+------+------+
+14 rows in set (0.00 sec)
+
+mysql> 
+mysql> alter table emp
+    -> add (deptno int(2));
+ERROR 1060 (42S21): Duplicate column name 'deptno'
+mysql> alter table emp
+    -> add (comm numeric(10,2));
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table emp
+    -> add com numeric(10,2) after ename;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp;
++-------+--------+------+-------+-----------+------+------------+---------+--------+------+------+------+
+| empno | ename  | com  | bonus | job       | mgr  | hiredate   | Salary  | deptno | loc  | hra  | comm |
++-------+--------+------+-------+-----------+------+------------+---------+--------+------+------+------+
+|  7369 | SMITH  | NULL |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL | NULL | NULL |
+|  7499 | ALLEN  | NULL |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL | NULL | NULL |
+|  7521 | WARD   | NULL |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL | NULL | NULL |
+|  7566 | JONES  | NULL |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL | NULL | NULL |
+|  7654 | MARTIN | NULL |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL | NULL | NULL |
+|  7698 | BLAKE  | NULL |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL | NULL | NULL |
+|  7782 | CLARK  | NULL |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL | NULL | NULL |
+|  7788 | SCOTT  | NULL |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL | NULL | NULL |
+|  7839 | KING   | NULL |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL | NULL | NULL |
+|  7844 | TURNER | NULL |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL | NULL | NULL |
+|  7876 | ADAMS  | NULL |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL | NULL | NULL |
+|  7900 | JAMES  | NULL |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL | NULL | NULL |
+|  7902 | FORD   | NULL |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL | NULL | NULL |
+|  7934 | MILLER | NULL |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL | NULL | NULL |
++-------+--------+------+-------+-----------+------+------------+---------+--------+------+------+------+
+14 rows in set (0.00 sec)
+
+mysql> alter table emp
+    -> drop com;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table emp
+    -> change ename name varchar(20);
+Query OK, 14 rows affected (0.09 sec)
+Records: 14  Duplicates: 0  Warnings: 0
+
+mysql> alter table emp
+    -> modify empno int(2) primary key;
+Query OK, 14 rows affected, 1 warning (0.11 sec)
+Records: 14  Duplicates: 0  Warnings: 1
+
+mysql> alter table emp
+    -> modify Salary numeric(13,2);
+Query OK, 14 rows affected (1.28 sec)
+Records: 14  Duplicates: 0  Warnings: 0
+
+mysql> exit

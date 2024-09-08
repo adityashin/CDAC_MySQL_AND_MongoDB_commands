@@ -1,0 +1,175 @@
+ sanfoundry.com --mysql mcq
+
+create view v1
+as
+select ename,sal,hiredate
+from emp;
+
+create table v2
+as 
+select empno,ename,hiredate from emp
+where
+deptno in (10,20) and sal>500;
+
+create table v3
+as
+select ename,sal,comm from emp
+where sal between 1000 and 2000;
+
+grant select,update,insert on emp to hr;
+
+create index ename_id on emp(ename);
+
+create index sal_id on emp (sal desc);
+
+drop index ename_id on emp;
+
+select ename,sal from emp order by ename;
+
+select ename,sal from emp order by ename desc;
+
+select ename,sal,job from emp order by sal;
+
+--using col numbers
+select ename,sal from emp order by 1;
+
+--expression
+select ename,sal+5000 'NewSalary' from emp order by NewSalary;
+
+select ename,deptno,sal from emp order by deptno,sal;
+
+select ename,deptno,sal from emp order by deptno,sal desc;
+
+select ename,sal,e.deptno,dname,e.loc
+from emp e,dept d
+where e.deptno=d.deptno;
+
+select ename,sal,dname,loc,d.deptno
+from emp e,dept d
+where e.deptno=d.deptno and sal between 1000 and 2000;
+
+create table location(
+loc varchar(20),
+remark varchar(20));
+
+insert into location values('New York','remark1',1);
+insert into location values('DALLAS','remark2',2);
+insert into location values('CHICAGO','remark3',3);
+insert into location values('BOSTON','remark4',4);
+
+ select ename,sal,dname,loc,d.deptno
+    -> from emp e,dept d
+    -> where e.deptno = d.deptno and sal between 1000 and 3000;
+
+select ename,sal,d.dname,d.loc,d.deptno 
+from emp e,dept, dept d
+where e.deptno=d.deptno and sal between 1000 and 2000
+and (e.deptno in (10,20));
+
+select ename,sal,dname,loc,d.deptno
+from emp e
+left join
+dept d
+on (e.deptno = d.deptno);
+
+select * from dept d
+where exists
+(select * from emp e where d.deptno=e.deptno);
+
+set @a := 100;
+set @b := 200;
+select @a;
+select @b;
+
+set @eno:=100;
+set @ename:='aditya';
+
+select @eno;
+select @ename;
+
+select  @max:=max(sal) from emp where deptno=10;
+
+select @vsal:= select sal from emp 
+where
+ename='SMITH';
+
+delimiter;
+set autocommit=0;
+
+delimiter //
+create procedure proce1()
+begin
+select * from emp;
+select * from dept;
+select * from emp where deptno=10;
+end;
+//
+
+delimiter //
+create procedure proce2()
+begin
+update emp set sal=sal+(sal*0.2) 
+where ename='smith';
+delete from emp where ename='Ward';
+end;
+//
+
+delimiter //
+create procedure ifdemo()
+begin
+declare result varchar(20);
+set @a := 1000;
+set @b := 1000;
+if @a > @b then
+set @result := 'a is greater';
+elseif @a < @b then 
+set @result :='b is greater';
+else 
+set @result := 'both are same';
+end if;
+select @result;
+end;
+//
+
+delimiter ;
+call ifdemo();
+
+delimiter //
+
+
+delimiter //
+create procedure dowhile()
+begin
+set @num :=1;
+while @num <= 10
+do
+select @num;
+set @num := @num + 1;
+end while;
+end;
+//
+
+select routine_name from information_schema.routines
+where routine_type='Procedure'
+and routine_schema ='company';
+
+delimiter //
+create procedure out_demo1(in peno int,out psal numeric(10,2),
+out pannsal numeric(10,2))
+begin
+select sal,(sal*12) into psal,pannsal from emp where
+empno = peno;
+end;
+//
+
+delimiter //
+create procedure out_demo2(in pdeptno int, out pmax numeric(10,2), out pmin numeric(10,2),out pavg numeric(10,2))
+begin 
+select max(sal) , min(sal), avg(sal) into pmax,pmin,pavg from emp where deptno = pdeptno;
+end;
+//
+ 
+
+
+
+

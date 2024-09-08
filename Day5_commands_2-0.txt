@@ -1,0 +1,279 @@
+mysql> select * from emp
+    -> cross join
+    -> dept;
+ERROR 1046 (3D000): No database selected
+mysql> use company
+Database changed
+mysql> select * from emp
+    -> cross join
+    -> dept;
++-------+--------+-------+-----------+------+------------+---------+--------+------+--------+------------+----------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | sal     | deptno | comm | deptno | dname      | loc      |
++-------+--------+-------+-----------+------+------------+---------+--------+------+--------+------------+----------+
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |     30 | SALES      | CHICAGO  |
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |     30 | SALES      | CHICAGO  |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |     30 | SALES      | CHICAGO  |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |     30 | SALES      | CHICAGO  |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |     30 | SALES      | CHICAGO  |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |     30 | SALES      | CHICAGO  |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |     30 | SALES      | CHICAGO  |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |     30 | SALES      | CHICAGO  |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |     30 | SALES      | CHICAGO  |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |     30 | SALES      | CHICAGO  |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |     30 | SALES      | CHICAGO  |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |     30 | SALES      | CHICAGO  |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |     30 | SALES      | CHICAGO  |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |     30 | SALES      | CHICAGO  |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |     10 | ACCOUNTING | NEW YORK |
++-------+--------+-------+-----------+------+------------+---------+--------+------+--------+------------+----------+
+56 rows in set (0.03 sec)
+
+mysql> select * from emp
+    -> dept;
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | sal     | deptno | comm |
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+14 rows in set (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+
+| deptno | dname      | loc      |
++--------+------------+----------+
+|     10 | ACCOUNTING | NEW YORK |
+|     20 | RESEARCH   | DALLAS   |
+|     30 | SALES      | CHICAGO  |
+|     40 | OPERATIONS | BOSTON   |
++--------+------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from emp
+    -> cross join
+    -> dept order by ename;
++-------+--------+-------+-----------+------+------------+---------+--------+------+--------+------------+----------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | sal     | deptno | comm | deptno | dname      | loc      |
++-------+--------+-------+-----------+------+------------+---------+--------+------+--------+------------+----------+
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |     30 | SALES      | CHICAGO  |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |     30 | SALES      | CHICAGO  |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |     30 | SALES      | CHICAGO  |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |     30 | SALES      | CHICAGO  |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |     30 | SALES      | CHICAGO  |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |     30 | SALES      | CHICAGO  |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |     30 | SALES      | CHICAGO  |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |     30 | SALES      | CHICAGO  |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |     30 | SALES      | CHICAGO  |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |     30 | SALES      | CHICAGO  |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |     30 | SALES      | CHICAGO  |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |     30 | SALES      | CHICAGO  |
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |     30 | SALES      | CHICAGO  |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |     30 | SALES      | CHICAGO  |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |     40 | OPERATIONS | BOSTON   |
++-------+--------+-------+-----------+------+------------+---------+--------+------+--------+------------+----------+
+56 rows in set (0.03 sec)
+
+mysql> select * from emo
+    -> ^C
+mysql> select * from emp
+    -> cross join
+    -> dept order by empno;
++-------+--------+-------+-----------+------+------------+---------+--------+------+--------+------------+----------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | sal     | deptno | comm | deptno | dname      | loc      |
++-------+--------+-------+-----------+------+------------+---------+--------+------+--------+------------+----------+
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |     30 | SALES      | CHICAGO  |
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |     30 | SALES      | CHICAGO  |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |     30 | SALES      | CHICAGO  |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |     30 | SALES      | CHICAGO  |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |     30 | SALES      | CHICAGO  |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |     30 | SALES      | CHICAGO  |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |     30 | SALES      | CHICAGO  |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |     30 | SALES      | CHICAGO  |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |     30 | SALES      | CHICAGO  |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |     30 | SALES      | CHICAGO  |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |     30 | SALES      | CHICAGO  |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |     30 | SALES      | CHICAGO  |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |     30 | SALES      | CHICAGO  |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |     10 | ACCOUNTING | NEW YORK |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |     40 | OPERATIONS | BOSTON   |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |     30 | SALES      | CHICAGO  |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |     20 | RESEARCH   | DALLAS   |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |     10 | ACCOUNTING | NEW YORK |
++-------+--------+-------+-----------+------+------------+---------+--------+------+--------+------------+----------+
+56 rows in set (0.02 sec)
+
+mysql> select * from emp;
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | sal     | deptno | comm |
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+14 rows in set (0.00 sec)
+
+mysql> select a.ename,a.sal,b.ename as Manager_Name,b.sal as Manager_salary
+    -> from emp a, emp b
+    -> where a.mgr = b.empno;
++--------+---------+--------------+----------------+
+| ename  | sal     | Manager_Name | Manager_salary |
++--------+---------+--------------+----------------+
+| SMITH  |  800.00 | FORD         |        3000.00 |
+| ALLEN  | 1600.00 | BLAKE        |        2850.00 |
+| WARD   | 1250.00 | BLAKE        |        2850.00 |
+| JONES  | 2975.00 | KING         |        5000.00 |
+| MARTIN | 1250.00 | BLAKE        |        2850.00 |
+| BLAKE  | 2850.00 | KING         |        5000.00 |
+| CLARK  | 2450.00 | KING         |        5000.00 |
+| SCOTT  | 3000.00 | JONES        |        2975.00 |
+| TURNER | 1500.00 | BLAKE        |        2850.00 |
+| ADAMS  | 1100.00 | SCOTT        |        3000.00 |
+| JAMES  |  950.00 | BLAKE        |        2850.00 |
+| FORD   | 3000.00 | JONES        |        2975.00 |
+| MILLER | 1300.00 | CLARK        |        2450.00 |
++--------+---------+--------------+----------------+
+13 rows in set (0.00 sec)
+

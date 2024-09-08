@@ -1,0 +1,116 @@
+create table Deposit(
+Actno int(10) not null Primary key,
+Cname varchar(20),
+Bname varchar(20),
+Amount numeric(10,2),
+Adate date);
+
+insert into deposit values(100,'anil','vrce',1000.00,'1995-03-01')
+
+insert into deposit values(101,'sunil','ajin',5000.00,'1996-01-04'),(102,'mehul','karobagh',3500.00,'1995-09-17');
+
+insert into deposit values(103,'maduri','chandi',1200.00,'1995-12-17'),(104,'prmod','mg road,3000.00,'1996-03-27'),(105,'sandip','andheri',2000.00,'1996-03-31');
+
+create table borrow(
+loanno int(2) not null primary key,
+Cname varchar(20) ,
+Bname varchar(30),
+Amount numeric(10,2));
+
+insert into borrow values(201,'anil','vrce',1000.00),(206,'mehul','ajin',5000.00),(311,'sunil','dharampeth',3000.00),(321,'madhuri','andheri',2000.00),(375,'prmod','virar',8000.00);
+
+insert into borrow values(481,'kranti','nehrui place',3000.00);
+
+create table branch(
+bname varchar(20),
+city varchar(30));
+
+insert into branch values('vrce','nagpur'),
+('ajni','nagpur'),
+('karolbagh','delhi'),
+('chandi','delhi'),
+('dharampeth','nagpur'),
+('mg road','banglore');
+
+create table customer(
+Cname varchar(20),
+Clocation varchar(20));
+
+insert into customer values('anil','calcutta'),
+('sunil','delhi'),
+('mehul','baroda'),
+('mandar','patna'),
+('promond','nagpur'),
+('sandip','surat');
+
+1.Describe borrow,branch;
+
+desc borrow;
+
+desc branch;
+
+2.Describe borrow,customer;
+
+desc borrow;
+
+desc customer;
+
+3.List all data from table deposit.
+
+select * from deposit;
+
+4. list all data from borrow;
+
+select * from borrow;
+
+5.List all data from customer;
+
+select * from customer;
+
+6.List all data from branch
+
+select * from branch;
+
+7. give account number and amount of depositors
+
+select Actno,Amount from deposit;
+
+8. give name of depositors having amount greater than 4000;
+
+select Cname from deposit where amount>=4000;
+
+9. give name of customers who opened account after date 1-12-1995;
+
+select * from deposit where Adate >= '1995-12-01'; 
+
+10. add country code column in deposite
+
+alter table deposit
+add CountryCode int(10);
+
+11. Now drop countrycode column;
+
+alter table deposit
+drop countrycode;
+
+12. Modify name varchar to 100;
+
+alter table deposit
+modify Cname varchar(100);
+
+13.Rename cname to customer name;
+
+alter table deposit
+change cname CustomerName varchar(100);
+
+14. Delete all records of deposit
+
+truncate table deposit;
+
+15.Drop table deposit
+
+drop table deposit;
+
+
+
+

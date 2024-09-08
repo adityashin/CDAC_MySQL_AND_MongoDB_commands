@@ -1,0 +1,562 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| company            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.03 sec)
+
+mysql> use company;
+Database changed
+mysql> select * from emp;
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | sal     | deptno | comm |
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+14 rows in set (0.00 sec)
+
+mysql> select @vsal := select sal from emp where ename='smith';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select sal from emp where ename='smith'' at line 1
+mysql> 
+mysql> delimiter //
+mysql> create procedure proce1()
+    -> begin
+    -> select * from emp;
+    -> select * from dept;
+    -> select * from emp where deptno=10;
+    -> end;
+    -> //
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> delimiter
+ERROR: 
+DELIMITER must be followed by a 'delimiter' character or string
+mysql> delimiter;
+    -> call proce1();
+    -> ^C
+mysql> delimeter;
+    -> ^C
+mysql> delimiter ;
+mysql> call proce1;
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | sal     | deptno | comm |
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+14 rows in set (0.01 sec)
+
++--------+------------+----------+
+| deptno | dname      | loc      |
++--------+------------+----------+
+|     10 | ACCOUNTING | NEW YORK |
+|     20 | RESEARCH   | DALLAS   |
+|     30 | SALES      | CHICAGO  |
+|     40 | OPERATIONS | BOSTON   |
++--------+------------+----------+
+4 rows in set (0.09 sec)
+
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | sal     | deptno | comm |
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+3 rows in set (0.10 sec)
+
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> delimiter ;
+mysql> drop procedure proce1;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> set autocommit = 0;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> delimiter //
+mysql> ^C
+mysql> delimiter //
+mysql> create procedure proce2
+    -> begin
+    -> update emp set sal=sal+(sal*0.2) 
+    -> where ename='smith';
+    -> delete from emp where ename='Ward';
+    -> end;
+    -> 
+    -> //
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'begin
+update emp set sal=sal+(sal*0.2) 
+where ename='smith';
+delete from emp whe' at line 2
+mysql> 
+mysql> delimiter //
+mysql> create procedure proce2()
+    -> begin
+    -> update emp set sal=sal+(sal*0.2) 
+    -> where ename='smith';
+    -> delete from emp where ename='Ward';
+    -> end;
+    -> //
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> 
+mysql> create procedure ifdemo()
+    -> begin
+    -> declare result varchar(20);
+    -> set @a := 1000;
+    -> set @b := 200;
+    -> if @a < @b then
+    -> set @result := 'a is greater';
+    -> elseif @a < @b then 
+    -> set @result :='b is greater';
+    -> endif
+    -> endl;
+    -> //
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'endl' at line 11
+mysql> create procedure ifdemo()
+    -> begin
+    -> declare result varchar(20);
+    -> set @a := 1000;
+    -> set @b := 200;
+    -> if @a < @b then
+    -> set @result := 'a is greater';
+    -> elseif @a < @b then 
+    -> set @result :='b is greater';
+    -> end if
+    -> end;
+    -> //
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'end' at line 11
+mysql> create procedure ifdemo()
+    -> begin
+    -> declare result varchar(20);
+    -> set @a := 1000;
+    -> set @b := 200;
+    -> if @a < @b then
+    -> set @result := 'a is greater';
+    -> elseif @a < @b then 
+    -> set @result :='b is greater';
+    -> end if;
+    -> end;
+    -> //
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter ;
+mysql> call ifdemo();
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> drop proce2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'proce2' at line 1
+mysql> drop procedure proce2;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create procedure ifdemo()
+    -> begin
+    -> declare result varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3
+mysql> set @a := 1000;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> set @b := 200;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> if @a < @b then
+    -> set @result := 'a is greater';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'if @a < @b then
+set @result := 'a is greater'' at line 1
+mysql> elseif @a < @b then 
+    -> set @result :='b is greater';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'elseif @a < @b then 
+set @result :='b is greater'' at line 1
+mysql> else
+    -> set @result := 'both are same';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'else
+set @result := 'both are same'' at line 1
+mysql> end if;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'end if' at line 1
+mysql> select @result;
++------------------+
+| @result          |
++------------------+
+|              |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> end;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'end' at line 1
+mysql> //
+    -> 	create procedure ifdemo()
+    -> begin
+    -> declare result varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '//
+	create procedure ifdemo()
+begin
+declare result varchar(20)' at line 1
+mysql> set @a := 1000;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> set @b := 200;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> if @a > @b then
+    -> set @result := 'a is greater';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'if @a > @b then
+set @result := 'a is greater'' at line 1
+mysql> elseif @a < @b then 
+    -> set @result :='b is greater';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'elseif @a < @b then 
+set @result :='b is greater'' at line 1
+mysql> else 
+    -> set @result := 'both are same';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'else 
+set @result := 'both are same'' at line 1
+mysql> end if;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'end if' at line 1
+mysql> select @result;
++------------------+
+| @result          |
++------------------+
+|              |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> end;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'end' at line 1
+mysql> //
+    -> 
+    -> ^C
+mysql> 
+mysql> delimiter //
+mysql> create procedure ifdemo()
+    -> begin
+    -> declare result varchar(20);
+    -> set @a := 1000;
+    -> set @b := 200;
+    -> if @a > @b then
+    -> set @result := 'a is greater';
+    -> elseif @a < @b then 
+    -> set @result :='b is greater';
+    -> else 
+    -> set @result := 'both are same';
+    -> end if;
+    -> select @result;
+    -> end;
+    -> //
+ERROR 1304 (42000): PROCEDURE ifdemo already exists
+mysql> 
+mysql> drop procedure ifdemo;
+    -> ^C
+mysql> delimiter ;
+mysql> drop procedure ifdemo;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> 
+mysql> delimiter //
+mysql> create procedure ifdemo()
+    -> begin
+    -> declare result varchar(20);
+    -> set @a := 1000;
+    -> set @b := 200;
+    -> if @a > @b then
+    -> set @result := 'a is greater';
+    -> elseif @a < @b then 
+    -> set @result :='b is greater';
+    -> else 
+    -> set @result := 'both are same';
+    -> end if;
+    -> select @result;
+    -> end;
+    -> //
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> 
+mysql> delimiter ;
+mysql> call proce2;
+ERROR 1305 (42000): PROCEDURE company.proce2 does not exist
+mysql> call ifdemo;
++--------------+
+| @result      |
++--------------+
+| a is greater |
++--------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delimiter;
+ERROR: 
+DELIMITER must be followed by a 'delimiter' character or string
+mysql> ^C
+mysql> delimiter ;
+mysql> drop procedure proce2;
+ERROR 1305 (42000): PROCEDURE company.proce2 does not exist
+mysql> drop procedure ifdemo;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter //
+mysql> create procedure ifdemo()
+    -> begin
+    -> declare result varchar(20);
+    -> set @a := 1000;
+    -> set @b := 1000;
+    -> if @a > @b then
+    -> set @result := 'a is greater';
+    -> elseif @a < @b then 
+    -> set @result :='b is greater';
+    -> else 
+    -> set @result := 'both are same';
+    -> end if;
+    -> select @result;
+    -> end;
+    -> //
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> 
+mysql> delimiter ;
+mysql> call ifdemo();
++---------------+
+| @result       |
++---------------+
+| both are same |
++---------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> 
+mysql> delimiter //
+mysql> create procedure dowhile()
+    -> begin
+    -> set @num :=1;
+    -> while @num <= 10
+    -> do
+    -> select @num;
+    -> set @num := @num + 1;
+    -> end while;
+    -> end;
+    -> //
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter ;
+mysql> call dowhile();
++------+
+| @num |
++------+
+|    1 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| @num |
++------+
+|    2 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| @num |
++------+
+|    3 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| @num |
++------+
+|    4 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| @num |
++------+
+|    5 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| @num |
++------+
+|    6 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| @num |
++------+
+|    7 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| @num |
++------+
+|    8 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| @num |
++------+
+|    9 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| @num |
++------+
+|   10 |
++------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> 
+mysql> select routine_name from information_scheme.routines
+    -> where routine_type='Procedure'
+    -> and routine_scheme ='CDAC';
+ERROR 1049 (42000): Unknown database 'information_scheme'
+mysql> 
+mysql> select routine_name from information_schema.routines
+    -> where routine_type='Procedure'
+    -> and routine_scheme ='CDAC';
+ERROR 1054 (42S22): Unknown column 'routine_scheme' in 'where clause'
+mysql> 
+mysql> select routine_name from information_schema.routines
+    -> where routine_type='Procedure'
+    -> and routine_schema ='CDAC';
+Empty set (0.00 sec)
+
+mysql> 
+mysql> 
+mysql> select routine_name from information_schema.routines
+    -> where routine_type='Procedure'
+    -> and routine_schema ='company';
+Empty set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| company            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use company
+Database changed
+mysql> 
+mysql> select routine_name from information_schema.routines
+    -> where routine_type='Procedure'
+    -> and routine_schema ='company';
+Empty set (0.00 sec)
+
+mysql> 
+mysql> delimiter //
+mysql> create procedure out_demo1(in peno int,out psal numeric(10,2),
+    -> out pannsal numeric(10,2))
+    -> begin
+    -> select sal,(sal*12) into psal,pannsal from emp where
+    -> empno = peno;
+    -> end;
+    -> //
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter ;
+mysql> call out_demo1(7499,@psal,@pann);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select @psal;
++---------+
+| @psal   |
++---------+
+| 1600.00 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> @pann;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@pann' at line 1
+mysql> select @pann;
++----------+
+| @pann    |
++----------+
+| 19200.00 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> 
+mysql> delimiter//
+    -> create procedure out_demo2(in pdeptno int, out pmax numeric(10,2), out pmin numeric(10,2),out pavg numeric(10,2))
+    -> begin 
+    -> select max(sal) , min(sal), avg(sal) into pmax,pmin,pavg from emp where deptno = pdeptno;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter//create procedure out_demo2(in pdeptno int, out pmax numeric(10,2), ou' at line 1
+mysql> end;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'end' at line 1
+mysql> //
+    -> 
+    -> delimiter //
+    -> create procedure out_demo2(in pdeptno int, out pmax numeric(10,2), out pmin numeric(10,2),out pavg numeric(10,2))
+    -> begin 
+    -> select max(sal) , min(sal), avg(sal) into pmax,pmin,pavg from emp where deptno = pdeptno;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '//
+
+delimiter //create procedure out_demo2(in pdeptno int, out pmax numeric(10,2' at line 1
+mysql> end;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'end' at line 1
+mysql> //
+    -> ^C
+mysql> 
+mysql> delimiter //
+mysql> create procedure out_demo2(in pdeptno int, out pmax numeric(10,2), out pmin numeric(10,2),out pavg numeric(10,2))
+    -> begin 
+    -> select max(sal) , min(sal), avg(sal) into pmax,pmin,pavg from emp where deptno = pdeptno;
+    -> end;
+    -> //
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter ;
+mysql> call out_demo2(10,@pmax,@pmin,@pavg);
+Query OK, 1 row affected, 1 warning (0.02 sec)
+
+mysql> select @pmax,@pmin,@pavg;
++---------+---------+---------+
+| @pmax   | @pmin   | @pavg   |
++---------+---------+---------+
+| 5000.00 | 1300.00 | 2916.67 |
++---------+---------+---------+
+1 row in set (0.00 sec)
+
+mysql> exit

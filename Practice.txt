@@ -1,0 +1,964 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| company            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.04 sec)
+
+mysql> use company;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_company |
++-------------------+
+| dept              |
+| emp               |
+| emp3              |
+| location          |
+| v1                |
+| v2                |
+| v3                |
++-------------------+
+7 rows in set (0.01 sec)
+
+mysql> select * from emp;
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | sal     | deptno | comm |
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+14 rows in set (0.00 sec)
+
+mysql> select distinct(job) from emp ;
++-----------+
+| job       |
++-----------+
+| CLERK     |
+| SALESMAN  |
+| MANAGER   |
+| ANALYST   |
+| PRESIDENT |
++-----------+
+5 rows in set (0.00 sec)
+
+mysql> select distinct(deptno) from emp;
++--------+
+| deptno |
++--------+
+|     20 |
+|     30 |
+|     10 |
++--------+
+3 rows in set (0.00 sec)
+
+mysql> create database practice;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> use practice
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table Deposit(
+    -> ^C
+mysql> create table Deposit(
+    -> Actno int(10) notnull,
+    -> Cname varchar(20),
+    -> Bname varchar(20),
+    -> Amount numeric(10,2),
+    -> Adate date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'notnull,
+Cname varchar(20),
+Bname varchar(20),
+Amount numeric(10,2),
+Adate date)' at line 2
+mysql> create table Deposit(
+    -> Actno int(10) not null Primary key,
+    -> Cname varchar(20),
+    -> Bname varchar(20),
+    -> Amount numeric(10,2),
+    -> Adate date);
+Query OK, 0 rows affected, 1 warning (0.07 sec)
+
+mysql> desc deposit;
++--------+---------------+------+-----+---------+-------+
+| Field  | Type          | Null | Key | Default | Extra |
++--------+---------------+------+-----+---------+-------+
+| Actno  | int           | NO   | PRI | NULL    |       |
+| Cname  | varchar(20)   | YES  |     | NULL    |       |
+| Bname  | varchar(20)   | YES  |     | NULL    |       |
+| Amount | decimal(10,2) | YES  |     | NULL    |       |
+| Adate  | date          | YES  |     | NULL    |       |
++--------+---------------+------+-----+---------+-------+
+5 rows in set (0.03 sec)
+
+mysql> 
+mysql> insert into deposit values(100,'anil','vrce',1000.00,'1995-03-01')
+    -> ;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> 
+mysql> insert into deposit values(101,'sunil','ajin',5000.00,'1996-01-04'),(102,'mehul','karobagh',3500.00,'1995-09-17');
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from deposit;
++-------+-------+----------+---------+------------+
+| Actno | Cname | Bname    | Amount  | Adate      |
++-------+-------+----------+---------+------------+
+|   100 | anil  | vrce     | 1000.00 | 1995-03-01 |
+|   101 | sunil | ajin     | 5000.00 | 1996-01-04 |
+|   102 | mehul | karobagh | 3500.00 | 1995-09-17 |
++-------+-------+----------+---------+------------+
+3 rows in set (0.00 sec)
+
+mysql> 
+mysql> insert into deposit values(103,'maduri','chandi',1200.00,'1995-12-17'),(104,'prmod','mg road,3000.00,1996-03-27),(105,'sandip','andheri',2000.00,'1996-03-31');
+    '> ^C
+mysql> 
+mysql> insert into deposit values(103,'maduri','chandi',1200.00,'1995-12-17'),(104,'prmod','mg road,3000.00,1996-03-27),(105,'sandip','andheri',2000.00,'1996-03-31');
+    '> 
+    '> ;
+    '> ;
+    '> ;
+    '> ;
+    '> ;
+    '> ;
+    '> ^C
+mysql> 
+mysql> insert into deposit values(103,'maduri','chandi',1200.00,'1995-12-17'),(104,'prmod','mg road',3000.00,'1996-03-27'),(105,'sandip','andheri',2000.00,'1996-03-31');
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from deposit;
++-------+--------+----------+---------+------------+
+| Actno | Cname  | Bname    | Amount  | Adate      |
++-------+--------+----------+---------+------------+
+|   100 | anil   | vrce     | 1000.00 | 1995-03-01 |
+|   101 | sunil  | ajin     | 5000.00 | 1996-01-04 |
+|   102 | mehul  | karobagh | 3500.00 | 1995-09-17 |
+|   103 | maduri | chandi   | 1200.00 | 1995-12-17 |
+|   104 | prmod  | mg road  | 3000.00 | 1996-03-27 |
+|   105 | sandip | andheri  | 2000.00 | 1996-03-31 |
++-------+--------+----------+---------+------------+
+6 rows in set (0.00 sec)
+
+mysql> 
+mysql> create table borrow(
+    -> loanno int(2) not null primary key,
+    -> Cname varchar(20) ,
+    -> Bname varchar(30),
+    -> Amount numeric(10,2));
+Query OK, 0 rows affected, 1 warning (0.07 sec)
+
+mysql> 
+mysql> insert into borrow values(201,'anil','vrce',1000.00),(206,'mehul','ajin',5000.00),(311,'sunil','dharampeth',3000.00),(321,'madhuri','andheri',2000.00),(375,'prmod','virar',8000.00);
+Query OK, 5 rows affected (0.03 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from borrow;
++--------+---------+------------+---------+
+| loanno | Cname   | Bname      | Amount  |
++--------+---------+------------+---------+
+|    201 | anil    | vrce       | 1000.00 |
+|    206 | mehul   | ajin       | 5000.00 |
+|    311 | sunil   | dharampeth | 3000.00 |
+|    321 | madhuri | andheri    | 2000.00 |
+|    375 | prmod   | virar      | 8000.00 |
++--------+---------+------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> 
+mysql> insert into borrow(481,'kranti','nehrui place',3000.00);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '481,'kranti','nehrui place',3000.00)' at line 1
+mysql> 
+mysql> insert into borrow values(481,'kranti','nehrui place',3000.00);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> 
+mysql> create branch(
+    -> bname varchar(20),
+    -> city varchar(30));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'branch(
+bname varchar(20),
+city varchar(30))' at line 1
+mysql> 
+mysql> create table branch(
+    -> bname varchar(20),
+    -> city varchar(30));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> 
+mysql> insert into branch('vrce','nagpur'),
+    -> ('ajni','nagpur'),('karolbagh','delhi'),('chandi','delhi'),('dharampeth','nagpur','mg road','banglore');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''vrce','nagpur'),
+('ajni','nagpur'),('karolbagh','delhi'),('chandi','delhi'),('d' at line 1
+mysql> 
+mysql> insert into branch values('vrce','nagpur'),
+    -> ('ajni','nagpur'),('karolbagh','delhi'),('chandi','delhi'),('dharampeth','nagpur','mg road','banglore');
+ERROR 1136 (21S01): Column count doesn't match value count at row 5
+mysql> 
+mysql> insert into branch values('vrce','nagpur'),
+    -> ('ajni','nagpur'),
+    -> ('karolbagh','delhi'),
+    -> ('chandi','delhi'),
+    -> ('dharampeth','nagpur'),
+    -> ('mg road','banglore');
+Query OK, 6 rows affected (0.03 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from branch;
++------------+----------+
+| bname      | city     |
++------------+----------+
+| vrce       | nagpur   |
+| ajni       | nagpur   |
+| karolbagh  | delhi    |
+| chandi     | delhi    |
+| dharampeth | nagpur   |
+| mg road    | banglore |
++------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> 
+mysql> create table customer(
+    -> Cname varchar(20),
+    -> Clocation varchar(20));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> 
+mysql> insert into customer values('anil','calcutta'),
+    -> ('sunil','delhi'),
+    -> ('mehul','baroda'),
+    -> ('mandar','patna'),
+    -> ('promond','nagpur'),
+    -> ('sandip','surat');
+Query OK, 6 rows affected (0.03 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> desc borrow;
++--------+---------------+------+-----+---------+-------+
+| Field  | Type          | Null | Key | Default | Extra |
++--------+---------------+------+-----+---------+-------+
+| loanno | int           | NO   | PRI | NULL    |       |
+| Cname  | varchar(20)   | YES  |     | NULL    |       |
+| Bname  | varchar(30)   | YES  |     | NULL    |       |
+| Amount | decimal(10,2) | YES  |     | NULL    |       |
++--------+---------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> 
+mysql> desc branch;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| bname | varchar(20) | YES  |     | NULL    |       |
+| city  | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc borrow;
++--------+---------------+------+-----+---------+-------+
+| Field  | Type          | Null | Key | Default | Extra |
++--------+---------------+------+-----+---------+-------+
+| loanno | int           | NO   | PRI | NULL    |       |
+| Cname  | varchar(20)   | YES  |     | NULL    |       |
+| Bname  | varchar(30)   | YES  |     | NULL    |       |
+| Amount | decimal(10,2) | YES  |     | NULL    |       |
++--------+---------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> 
+mysql> desc customer;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Cname     | varchar(20) | YES  |     | NULL    |       |
+| Clocation | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> 
+mysql> select * from deposit.
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select * from deposit;
++-------+--------+----------+---------+------------+
+| Actno | Cname  | Bname    | Amount  | Adate      |
++-------+--------+----------+---------+------------+
+|   100 | anil   | vrce     | 1000.00 | 1995-03-01 |
+|   101 | sunil  | ajin     | 5000.00 | 1996-01-04 |
+|   102 | mehul  | karobagh | 3500.00 | 1995-09-17 |
+|   103 | maduri | chandi   | 1200.00 | 1995-12-17 |
+|   104 | prmod  | mg road  | 3000.00 | 1996-03-27 |
+|   105 | sandip | andheri  | 2000.00 | 1996-03-31 |
++-------+--------+----------+---------+------------+
+6 rows in set (0.00 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_practice |
++--------------------+
+| borrow             |
+| branch             |
+| customer           |
+| deposit            |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> 
+mysql> select * from borrow;
++--------+---------+--------------+---------+
+| loanno | Cname   | Bname        | Amount  |
++--------+---------+--------------+---------+
+|    201 | anil    | vrce         | 1000.00 |
+|    206 | mehul   | ajin         | 5000.00 |
+|    311 | sunil   | dharampeth   | 3000.00 |
+|    321 | madhuri | andheri      | 2000.00 |
+|    375 | prmod   | virar        | 8000.00 |
+|    481 | kranti  | nehrui place | 3000.00 |
++--------+---------+--------------+---------+
+6 rows in set (0.00 sec)
+
+mysql> 
+mysql> select * from customer;
++---------+-----------+
+| Cname   | Clocation |
++---------+-----------+
+| anil    | calcutta  |
+| sunil   | delhi     |
+| mehul   | baroda    |
+| mandar  | patna     |
+| promond | nagpur    |
+| sandip  | surat     |
++---------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> 
+mysql> 
+mysql> select * from branch;
++------------+----------+
+| bname      | city     |
++------------+----------+
+| vrce       | nagpur   |
+| ajni       | nagpur   |
+| karolbagh  | delhi    |
+| chandi     | delhi    |
+| dharampeth | nagpur   |
+| mg road    | banglore |
++------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> s
+    -> select Actno,Amount from deposit;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 's
+select Actno,Amount from deposit' at line 1
+mysql> 
+mysql> select Actno,Amount from deposit;
++-------+---------+
+| Actno | Amount  |
++-------+---------+
+|   100 | 1000.00 |
+|   101 | 5000.00 |
+|   102 | 3500.00 |
+|   103 | 1200.00 |
+|   104 | 3000.00 |
+|   105 | 2000.00 |
++-------+---------+
+6 rows in set (0.00 sec)
+
+mysql> select Cname from deposit where amount>=4000;
++-------+
+| Cname |
++-------+
+| sunil |
++-------+
+1 row in set (0.00 sec)
+
+mysql> 
+mysql> select * from deposit where Adate >= '1995-12-01';
++-------+--------+---------+---------+------------+
+| Actno | Cname  | Bname   | Amount  | Adate      |
++-------+--------+---------+---------+------------+
+|   101 | sunil  | ajin    | 5000.00 | 1996-01-04 |
+|   103 | maduri | chandi  | 1200.00 | 1995-12-17 |
+|   104 | prmod  | mg road | 3000.00 | 1996-03-27 |
+|   105 | sandip | andheri | 2000.00 | 1996-03-31 |
++-------+--------+---------+---------+------------+
+4 rows in set (0.02 sec)
+
+mysql> desc deposit;
++--------+---------------+------+-----+---------+-------+
+| Field  | Type          | Null | Key | Default | Extra |
++--------+---------------+------+-----+---------+-------+
+| Actno  | int           | NO   | PRI | NULL    |       |
+| Cname  | varchar(20)   | YES  |     | NULL    |       |
+| Bname  | varchar(20)   | YES  |     | NULL    |       |
+| Amount | decimal(10,2) | YES  |     | NULL    |       |
+| Adate  | date          | YES  |     | NULL    |       |
++--------+---------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> 
+mysql> alter table deposit
+    -> add CountryCode int(10);
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> select * from deposit;
++-------+--------+----------+---------+------------+-------------+
+| Actno | Cname  | Bname    | Amount  | Adate      | CountryCode |
++-------+--------+----------+---------+------------+-------------+
+|   100 | anil   | vrce     | 1000.00 | 1995-03-01 |        NULL |
+|   101 | sunil  | ajin     | 5000.00 | 1996-01-04 |        NULL |
+|   102 | mehul  | karobagh | 3500.00 | 1995-09-17 |        NULL |
+|   103 | maduri | chandi   | 1200.00 | 1995-12-17 |        NULL |
+|   104 | prmod  | mg road  | 3000.00 | 1996-03-27 |        NULL |
+|   105 | sandip | andheri  | 2000.00 | 1996-03-31 |        NULL |
++-------+--------+----------+---------+------------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> alter 
+    -> alter table deposit
+    -> drop countrycode;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'alter table deposit
+drop countrycode' at line 2
+mysql> 
+mysql> alter table deposit
+    -> drop countrycode;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> alter table deposit
+    -> modify Cname Cname varchar(100);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Cname varchar(100)' at line 2
+mysql> 
+mysql> alter table deposit
+    -> modify Cname varchar(100);
+Query OK, 6 rows affected (0.10 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> desc deposit;
++--------+---------------+------+-----+---------+-------+
+| Field  | Type          | Null | Key | Default | Extra |
++--------+---------------+------+-----+---------+-------+
+| Actno  | int           | NO   | PRI | NULL    |       |
+| Cname  | varchar(100)  | YES  |     | NULL    |       |
+| Bname  | varchar(20)   | YES  |     | NULL    |       |
+| Amount | decimal(10,2) | YES  |     | NULL    |       |
+| Adate  | date          | YES  |     | NULL    |       |
++--------+---------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> 
+mysql> alter table deposit
+    -> change cname CustomerName varchr(100);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchr(100)' at line 2
+mysql> 
+mysql> alter table deposit
+    -> change cname CustomerName varchar(100);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> truncate table deposit;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> select * from deposit;
+Empty set (0.00 sec)
+
+mysql> 
+mysql> drop table deposit;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> mysql --version
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql --version' at line 1
+mysql> sql --version
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sql --version' at line 1
+mysql> show tables;
++--------------------+
+| Tables_in_practice |
++--------------------+
+| borrow             |
+| branch             |
+| customer           |
++--------------------+
+3 rows in set (0.01 sec)
+
+mysql> select * from branch;
++------------+----------+
+| bname      | city     |
++------------+----------+
+| vrce       | nagpur   |
+| ajni       | nagpur   |
+| karolbagh  | delhi    |
+| chandi     | delhi    |
+| dharampeth | nagpur   |
+| mg road    | banglore |
++------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> update table branch set city='Nagpur' where bname = 'vrce';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table branch set city='Nagpur' where bname = 'vrce'' at line 1
+mysql> alter table branch
+    -> add bno int(2) not null Primary key;
+ERROR 1062 (23000): Duplicate entry '0' for key 'branch.PRIMARY'
+mysql> alter table branch
+    -> add bno int(2);
+Query OK, 0 rows affected, 1 warning (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> select * from branch;
++------------+----------+------+
+| bname      | city     | bno  |
++------------+----------+------+
+| vrce       | nagpur   | NULL |
+| ajni       | nagpur   | NULL |
+| karolbagh  | delhi    | NULL |
+| chandi     | delhi    | NULL |
+| dharampeth | nagpur   | NULL |
+| mg road    | banglore | NULL |
++------------+----------+------+
+6 rows in set (0.00 sec)
+
+mysql> alter table branch
+    -> modify bno int(10) not null;
+ERROR 1138 (22004): Invalid use of NULL value
+mysql> alter table branch
+    -> drop bno;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from branch;
++------------+----------+
+| bname      | city     |
++------------+----------+
+| vrce       | nagpur   |
+| ajni       | nagpur   |
+| karolbagh  | delhi    |
+| chandi     | delhi    |
+| dharampeth | nagpur   |
+| mg road    | banglore |
++------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> use company;
+Database changed
+mysql> select * from emp where comm = 0 or comm = null;
+Empty set (0.00 sec)
+
+mysql> select * from emp;
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | sal     | deptno | comm |
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+14 rows in set (0.00 sec)
+
+mysql> select * from emp where comm = 'NULL' or comm = 0;
+Empty set, 1 warning (0.02 sec)
+
+mysql> select * from emp where comm is 'NULL' or comm = 0;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''NULL' or comm = 0' at line 1
+mysql> select * from emp where comm is NULL or comm = 0;
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | sal     | deptno | comm |
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |
++-------+--------+-------+-----------+------+------------+---------+--------+------+
+14 rows in set (0.00 sec)
+
+mysql> select * from emp where comm is not null;
+Empty set (0.00 sec)
+
+mysql> insert into emp values(7935,'TONY',90,'CLERK',7839,'1980-12-18',2400,10,900);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from emp where comm is not null;
++-------+-------+-------+-------+------+------------+---------+--------+--------+
+| empno | ename | bonus | job   | mgr  | hiredate   | sal     | deptno | comm   |
++-------+-------+-------+-------+------+------------+---------+--------+--------+
+|  7935 | TONY  | 90.00 | CLERK | 7839 | 1980-12-18 | 2400.00 |     10 | 900.00 |
++-------+-------+-------+-------+------+------------+---------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from emp limit 6;
++-------+--------+-------+----------+------+------------+---------+--------+------+
+| empno | ename  | bonus | job      | mgr  | hiredate   | sal     | deptno | comm |
++-------+--------+-------+----------+------+------------+---------+--------+------+
+|  7369 | SMITH  |  NULL | CLERK    | 7902 | 1980-12-17 |  800.00 |     20 | NULL |
+|  7499 | ALLEN  |  NULL | SALESMAN | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |
+|  7521 | WARD   |  NULL | SALESMAN | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |
+|  7566 | JONES  |  NULL | MANAGER  | 7839 | 1981-04-02 | 2975.00 |     20 | NULL |
+|  7654 | MARTIN |  NULL | SALESMAN | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |
+|  7698 | BLAKE  |  NULL | MANAGER  | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |
++-------+--------+-------+----------+------+------------+---------+--------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from emp limit(5,6);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(5,6)' at line 1
+mysql> select * from emp limit 5,3;
++-------+-------+-------+---------+------+------------+---------+--------+------+
+| empno | ename | bonus | job     | mgr  | hiredate   | sal     | deptno | comm |
++-------+-------+-------+---------+------+------------+---------+--------+------+
+|  7698 | BLAKE |  NULL | MANAGER | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |
+|  7782 | CLARK |  NULL | MANAGER | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |
+|  7788 | SCOTT |  NULL | ANALYST | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |
++-------+-------+-------+---------+------+------------+---------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from emp where (deptno=10 and job='manager') or (deptno=20 and job = 'analyst'); 
++-------+-------+-------+---------+------+------------+---------+--------+------+
+| empno | ename | bonus | job     | mgr  | hiredate   | sal     | deptno | comm |
++-------+-------+-------+---------+------+------------+---------+--------+------+
+|  7782 | CLARK |  NULL | MANAGER | 7839 | 1981-06-09 | 2450.00 |     10 | NULL |
+|  7788 | SCOTT |  NULL | ANALYST | 7566 | 1982-12-09 | 3000.00 |     20 | NULL |
+|  7902 | FORD  |  NULL | ANALYST | 7566 | 1981-12-03 | 3000.00 |     20 | NULL |
++-------+-------+-------+---------+------+------------+---------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from emp where (deptno=10 and job='manager') and comm is not null;
+Empty set (0.00 sec)
+
+mysql> select * from emp where (deptno=10 and job='manager') or comm is not null;
++-------+-------+-------+---------+------+------------+---------+--------+--------+
+| empno | ename | bonus | job     | mgr  | hiredate   | sal     | deptno | comm   |
++-------+-------+-------+---------+------+------------+---------+--------+--------+
+|  7782 | CLARK |  NULL | MANAGER | 7839 | 1981-06-09 | 2450.00 |     10 |   NULL |
+|  7935 | TONY  | 90.00 | CLERK   | 7839 | 1980-12-18 | 2400.00 |     10 | 900.00 |
++-------+-------+-------+---------+------+------------+---------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from emp where sal >=1000 and sal<=2000;
++-------+--------+-------+----------+------+------------+---------+--------+------+
+| empno | ename  | bonus | job      | mgr  | hiredate   | sal     | deptno | comm |
++-------+--------+-------+----------+------+------------+---------+--------+------+
+|  7499 | ALLEN  |  NULL | SALESMAN | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |
+|  7844 | TURNER |  NULL | SALESMAN | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |
+|  7934 | MILLER |  NULL | CLERK    | 7782 | 1982-01-23 | 1300.00 |     10 | NULL |
+|  7521 | WARD   |  NULL | SALESMAN | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |
+|  7654 | MARTIN |  NULL | SALESMAN | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |
+|  7876 | ADAMS  |  NULL | CLERK    | 7788 | 1983-01-12 | 1100.00 |     20 | NULL |
++-------+--------+-------+----------+------+------------+---------+--------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from emp where deptno in (10,20);
++-------+--------+-------+-----------+------+------------+---------+--------+--------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | sal     | deptno | comm   |
++-------+--------+-------+-----------+------+------------+---------+--------+--------+
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 |   NULL |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 |   NULL |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 |   NULL |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 |   NULL |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 |   NULL |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 |   NULL |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 |   NULL |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 |   NULL |
+|  7935 | TONY   | 90.00 | CLERK     | 7839 | 1980-12-18 | 2400.00 |     10 | 900.00 |
++-------+--------+-------+-----------+------+------------+---------+--------+--------+
+9 rows in set (0.00 sec)
+
+mysql> select * from emp where deptno not in (10,20);
++-------+--------+-------+----------+------+------------+---------+--------+------+
+| empno | ename  | bonus | job      | mgr  | hiredate   | sal     | deptno | comm |
++-------+--------+-------+----------+------+------------+---------+--------+------+
+|  7499 | ALLEN  |  NULL | SALESMAN | 7698 | 1981-02-20 | 1600.00 |     30 | NULL |
+|  7521 | WARD   |  NULL | SALESMAN | 7698 | 1981-02-22 | 1250.00 |     30 | NULL |
+|  7654 | MARTIN |  NULL | SALESMAN | 7698 | 1981-09-28 | 1250.00 |     30 | NULL |
+|  7698 | BLAKE  |  NULL | MANAGER  | 7839 | 1981-05-01 | 2850.00 |     30 | NULL |
+|  7844 | TURNER |  NULL | SALESMAN | 7698 | 1981-09-08 | 1500.00 |     30 | NULL |
+|  7900 | JAMES  |  NULL | CLERK    | 7698 | 1981-12-03 |  950.00 |     30 | NULL |
++-------+--------+-------+----------+------+------------+---------+--------+------+
+6 rows in set (0.00 sec)
+
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| company            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| practice           |
+| sys                |
++--------------------+
+6 rows in set (0.02 sec)
+
+mysql> use practice;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_practice |
++--------------------+
+| borrow             |
+| branch             |
+| customer           |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> create table dept(
+    -> deptno decimal(2) primary key ,
+    -> dname varchar(20) not null,
+    -> loc varchar(20) not null);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> 
+mysql> insert into dept values(10,'Accounting','Mumbai'),(20,'Finance','Nashik');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from dept;
++--------+------------+--------+
+| deptno | dname      | loc    |
++--------+------------+--------+
+|     10 | Accounting | Mumbai |
+|     20 | Finance    | Nashik |
++--------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select @max := max(sal) from emp
+    -> where deptno = 10;
+ERROR 1146 (42S02): Table 'practice.emp' doesn't exist
+mysql> use company;
+Database changed
+mysql> select @max := max(sal) from emp
+    -> where deptno = 10;
++------------------+
+| @max := max(sal) |
++------------------+
+|          5000.00 |
++------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select @max;
++---------+
+| @max    |
++---------+
+| 5000.00 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select @vsal := select sal from emp 
+    -> ^C
+mysql> select @vsal := sal from emp
+    -> where ename = 'smith';
++--------------+
+| @vsal := sal |
++--------------+
+|       800.00 |
++--------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select @vsal;
++--------+
+| @vsal  |
++--------+
+| 800.00 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create procedure proc1
+    -> begin
+    -> select * from emp;
+    -> select * from dept;
+    -> end;
+    -> //
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'begin
+select * from emp;
+select * from dept;
+end' at line 2
+mysql> delimiter //
+mysql> create procedure proc1()
+    -> begin
+    -> select * from emp;
+    -> select * from dept;
+    -> end;
+    -> //
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> delimiter ;
+mysql> call proc1();
++-------+--------+-------+-----------+------+------------+---------+--------+--------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | sal     | deptno | comm   |
++-------+--------+-------+-----------+------+------------+---------+--------+--------+
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 |   NULL |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 |   NULL |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 |   NULL |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 |   NULL |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 |   NULL |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 |   NULL |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 |   NULL |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 |   NULL |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 |   NULL |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 |   NULL |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 |   NULL |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 |   NULL |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 |   NULL |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 |   NULL |
+|  7935 | TONY   | 90.00 | CLERK     | 7839 | 1980-12-18 | 2400.00 |     10 | 900.00 |
++-------+--------+-------+-----------+------+------------+---------+--------+--------+
+15 rows in set (0.00 sec)
+
++--------+------------+----------+
+| deptno | dname      | loc      |
++--------+------------+----------+
+|     10 | ACCOUNTING | NEW YORK |
+|     20 | RESEARCH   | DALLAS   |
+|     30 | SALES      | CHICAGO  |
+|     40 | OPERATIONS | BOSTON   |
++--------+------------+----------+
+4 rows in set (0.07 sec)
+
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> delimiter  ;
+mysql> ^C
+mysql> delimiter ;
+mysql> drop procedure proc1;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> delimiter \\
+ERROR: 
+DELIMITER cannot contain a backslash character
+mysql> create procedure proc2
+    -> begin
+    -> update emp ste sal = sal + (0.1 * sal)
+    -> where ename = 'smith';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'begin
+update emp ste sal = sal + (0.1 * sal)
+where ename = 'smith'' at line 2
+mysql> delimiter \\
+ERROR: 
+DELIMITER cannot contain a backslash character
+mysql> delimiter //
+mysql> create procedure proc2
+    -> begin 
+    -> update emp set sal = sal + (0.1 * sal)
+    -> where ename = 'smith';
+    -> delete from emp where ename = 'ward';
+    -> end;
+    -> //
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'begin 
+update emp set sal = sal + (0.1 * sal)
+where ename = 'smith';
+delete from' at line 2
+mysql> system cls
+mysql> show databases;
+    -> ^C
+mysql> ^C
+mysql> ^C
+mysql> show tables;
+    -> ^C
+mysql> delimiter ;
+mysql> show tables;
++-------------------+
+| Tables_in_company |
++-------------------+
+| dept              |
+| emp               |
+| emp3              |
+| location          |
+| v1                |
+| v2                |
+| v3                |
++-------------------+
+7 rows in set (0.00 sec)
+
+mysql> Select * from v1;
++--------+---------+------------+
+| ename  | sal     | hiredate   |
++--------+---------+------------+
+| SMITH  |  800.00 | 1980-12-17 |
+| ALLEN  | 1600.00 | 1981-02-20 |
+| WARD   | 1250.00 | 1981-02-22 |
+| JONES  | 2975.00 | 1981-04-02 |
+| MARTIN | 1250.00 | 1981-09-28 |
+| BLAKE  | 2850.00 | 1981-05-01 |
+| CLARK  | 2450.00 | 1981-06-09 |
+| SCOTT  | 3000.00 | 1982-12-09 |
+| KING   | 5000.00 | 1981-11-17 |
+| TURNER | 1500.00 | 1981-09-08 |
+| ADAMS  | 1100.00 | 1983-01-12 |
+| JAMES  |  950.00 | 1981-12-03 |
+| FORD   | 3000.00 | 1981-12-03 |
+| MILLER | 1300.00 | 1982-01-23 |
+| TONY   | 2400.00 | 1980-12-18 |
++--------+---------+------------+
+15 rows in set (0.02 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_company |
++-------------------+
+| dept              |
+| emp               |
+| emp3              |
+| location          |
+| v1                |
+| v2                |
+| v3                |
++-------------------+
+7 rows in set (0.01 sec)
+
+mysql> drop view v1;
+Query OK, 0 rows affected (0.03 sec)
+

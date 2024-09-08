@@ -1,0 +1,263 @@
+mysql> use company
+Database changed
+mysql> select * from ep
+    -> ^C
+mysql> select * from emp;
++-------+--------+-------+-----------+------+------------+---------+--------+------+------+------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | Salary  | deptno | loc  | hra  | comm |
++-------+--------+-------+-----------+------+------------+---------+--------+------+------+------+
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL | NULL | NULL |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL | NULL | NULL |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL | NULL | NULL |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL | NULL | NULL |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL | NULL | NULL |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL | NULL | NULL |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL | NULL | NULL |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL | NULL | NULL |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL | NULL | NULL |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL | NULL | NULL |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL | NULL | NULL |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL | NULL | NULL |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL | NULL | NULL |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL | NULL | NULL |
++-------+--------+-------+-----------+------+------------+---------+--------+------+------+------+
+14 rows in set (0.00 sec)
+
+mysql> alter table emp
+    -> drop hra from emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from emp' at line 2
+mysql> drop hra from emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'hra from emp' at line 1
+mysql> alter table emp
+    -> drop hra;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from empl
+    -> ^C
+mysql> select * from emp;
++-------+--------+-------+-----------+------+------------+---------+--------+------+------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | Salary  | deptno | loc  | comm |
++-------+--------+-------+-----------+------+------------+---------+--------+------+------+
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL | NULL |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL | NULL |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL | NULL |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL | NULL |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL | NULL |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL | NULL |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL | NULL |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL | NULL |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL | NULL |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL | NULL |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL | NULL |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL | NULL |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL | NULL |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL | NULL |
++-------+--------+-------+-----------+------+------------+---------+--------+------+------+
+14 rows in set (0.00 sec)
+
+mysql> select ename,sal from emp order by sal;
+ERROR 1054 (42S22): Unknown column 'sal' in 'field list'
+mysql> select ename,Salary from emp order by salary;
++--------+---------+
+| ename  | Salary  |
++--------+---------+
+| SMITH  |  800.00 |
+| JAMES  |  950.00 |
+| ADAMS  | 1100.00 |
+| WARD   | 1250.00 |
+| MARTIN | 1250.00 |
+| MILLER | 1300.00 |
+| TURNER | 1500.00 |
+| ALLEN  | 1600.00 |
+| CLARK  | 2450.00 |
+| BLAKE  | 2850.00 |
+| JONES  | 2975.00 |
+| SCOTT  | 3000.00 |
+| FORD   | 3000.00 |
+| KING   | 5000.00 |
++--------+---------+
+14 rows in set (0.00 sec)
+
+mysql> select ename from emp order by ename;
++--------+
+| ename  |
++--------+
+| ADAMS  |
+| ALLEN  |
+| BLAKE  |
+| CLARK  |
+| FORD   |
+| JAMES  |
+| JONES  |
+| KING   |
+| MARTIN |
+| MILLER |
+| SCOTT  |
+| SMITH  |
+| TURNER |
+| WARD   |
++--------+
+14 rows in set (0.00 sec)
+
+mysql> select ename,salary from emp order by salary desc;
++--------+---------+
+| ename  | salary  |
++--------+---------+
+| KING   | 5000.00 |
+| SCOTT  | 3000.00 |
+| FORD   | 3000.00 |
+| JONES  | 2975.00 |
+| BLAKE  | 2850.00 |
+| CLARK  | 2450.00 |
+| ALLEN  | 1600.00 |
+| TURNER | 1500.00 |
+| MILLER | 1300.00 |
+| WARD   | 1250.00 |
+| MARTIN | 1250.00 |
+| ADAMS  | 1100.00 |
+| JAMES  |  950.00 |
+| SMITH  |  800.00 |
++--------+---------+
+14 rows in set (0.00 sec)
+
+mysql> select ename,salary from emp order by 1;
++--------+---------+
+| ename  | salary  |
++--------+---------+
+| ADAMS  | 1100.00 |
+| ALLEN  | 1600.00 |
+| BLAKE  | 2850.00 |
+| CLARK  | 2450.00 |
+| FORD   | 3000.00 |
+| JAMES  |  950.00 |
+| JONES  | 2975.00 |
+| KING   | 5000.00 |
+| MARTIN | 1250.00 |
+| MILLER | 1300.00 |
+| SCOTT  | 3000.00 |
+| SMITH  |  800.00 |
+| TURNER | 1500.00 |
+| WARD   | 1250.00 |
++--------+---------+
+14 rows in set (0.00 sec)
+
+mysql> select ename,salary from emp order by 2;
++--------+---------+
+| ename  | salary  |
++--------+---------+
+| SMITH  |  800.00 |
+| JAMES  |  950.00 |
+| ADAMS  | 1100.00 |
+| WARD   | 1250.00 |
+| MARTIN | 1250.00 |
+| MILLER | 1300.00 |
+| TURNER | 1500.00 |
+| ALLEN  | 1600.00 |
+| CLARK  | 2450.00 |
+| BLAKE  | 2850.00 |
+| JONES  | 2975.00 |
+| SCOTT  | 3000.00 |
+| FORD   | 3000.00 |
+| KING   | 5000.00 |
++--------+---------+
+14 rows in set (0.00 sec)
+
+mysql> select ename,salary+500 newsal from emp order by newsal;
++--------+---------+
+| ename  | newsal  |
++--------+---------+
+| SMITH  | 1300.00 |
+| JAMES  | 1450.00 |
+| ADAMS  | 1600.00 |
+| WARD   | 1750.00 |
+| MARTIN | 1750.00 |
+| MILLER | 1800.00 |
+| TURNER | 2000.00 |
+| ALLEN  | 2100.00 |
+| CLARK  | 2950.00 |
+| BLAKE  | 3350.00 |
+| JONES  | 3475.00 |
+| SCOTT  | 3500.00 |
+| FORD   | 3500.00 |
+| KING   | 5500.00 |
++--------+---------+
+14 rows in set (0.00 sec)
+
+mysql> select ename,salary+500 newsal from emp order by newsal desc;
++--------+---------+
+| ename  | newsal  |
++--------+---------+
+| KING   | 5500.00 |
+| SCOTT  | 3500.00 |
+| FORD   | 3500.00 |
+| JONES  | 3475.00 |
+| BLAKE  | 3350.00 |
+| CLARK  | 2950.00 |
+| ALLEN  | 2100.00 |
+| TURNER | 2000.00 |
+| MILLER | 1800.00 |
+| WARD   | 1750.00 |
+| MARTIN | 1750.00 |
+| ADAMS  | 1600.00 |
+| JAMES  | 1450.00 |
+| SMITH  | 1300.00 |
++--------+---------+
+14 rows in set (0.00 sec)
+
+mysql> select ename,deptno,salary from emp order by deptno,sal;
+ERROR 1054 (42S22): Unknown column 'sal' in 'order clause'
+mysql> select ename,deptno,salary from emp order by deptno,salary;;
++--------+--------+---------+
+| ename  | deptno | salary  |
++--------+--------+---------+
+| MILLER |     10 | 1300.00 |
+| CLARK  |     10 | 2450.00 |
+| KING   |     10 | 5000.00 |
+| SMITH  |     20 |  800.00 |
+| ADAMS  |     20 | 1100.00 |
+| JONES  |     20 | 2975.00 |
+| SCOTT  |     20 | 3000.00 |
+| FORD   |     20 | 3000.00 |
+| JAMES  |     30 |  950.00 |
+| WARD   |     30 | 1250.00 |
+| MARTIN |     30 | 1250.00 |
+| TURNER |     30 | 1500.00 |
+| ALLEN  |     30 | 1600.00 |
+| BLAKE  |     30 | 2850.00 |
++--------+--------+---------+
+14 rows in set (0.00 sec)
+
+ERROR: 
+No query specified
+
+mysql> alter table emp
+    -> change salary sal;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> alter table emp
+    -> change Salary sal numeric(13,2);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp;
++-------+--------+-------+-----------+------+------------+---------+--------+------+------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | sal     | deptno | loc  | comm |
++-------+--------+-------+-----------+------+------------+---------+--------+------+------+
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL | NULL |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL | NULL |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL | NULL |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL | NULL |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL | NULL |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL | NULL |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL | NULL |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL | NULL |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL | NULL |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL | NULL |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL | NULL |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL | NULL |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL | NULL |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL | NULL |
++-------+--------+-------+-----------+------+------------+---------+--------+------+------+
+14 rows in set (0.00 sec)
+
+mysql> exit

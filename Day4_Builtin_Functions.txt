@@ -1,0 +1,300 @@
+mysql> select ucase('cdac');
++---------------+
+| ucase('cdac') |
++---------------+
+| CDAC          |
++---------------+
+1 row in set (0.02 sec)
+
+mysql> select lcase('ADITYA');
++-----------------+
+| lcase('ADITYA') |
++-----------------+
+| aditya          |
++-----------------+
+1 row in set (0.02 sec)
+
+mysql> select ucase(lcase('ADITYA'));
++------------------------+
+| ucase(lcase('ADITYA')) |
++------------------------+
+| ADITYA                 |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> select select ascii('ADITYA');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select ascii('ADITYA')' at line 1
+mysql>  select ascii('ADITYA');
++-----------------+
+| ascii('ADITYA') |
++-----------------+
+|              65 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select length('ADITYA');
++------------------+
+| length('ADITYA') |
++------------------+
+|                6 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select replace('adi
+    '> ','a','dddd');
++----------------------------+
+| replace('adi
+','a','dddd') |
++----------------------------+
+| dddddi
+                    |
++----------------------------+
+1 row in set (0.00 sec)
+
+mysql> selecr replace('aditya','a','dd');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selecr replace('aditya','a','dd')' at line 1
+mysql> select replace('aditya','a','dd');
++----------------------------+
+| replace('aditya','a','dd') |
++----------------------------+
+| ddditydd                   |
++----------------------------+
+1 row in set (0.00 sec)
+
+mysql> select replace('aditya','aditya','aditya_anand_shinde');
++--------------------------------------------------+
+| replace('aditya','aditya','aditya_anand_shinde') |
++--------------------------------------------------+
+| aditya_anand_shinde                              |
++--------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select concat ('aditya','shinde');
++----------------------------+
+| concat ('aditya','shinde') |
++----------------------------+
+| adityashinde               |
++----------------------------+
+1 row in set (0.02 sec)
+
+mysql> select concat('aditya_anand','_shinde');
++----------------------------------+
+| concat('aditya_anand','_shinde') |
++----------------------------------+
+| aditya_anand_shinde              |
++----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select concat (ename, 'earning is ' , sal);
+ERROR 1054 (42S22): Unknown column 'ename' in 'field list'
+mysql> select concat (ename,' earning is ',sal) from emp;
+ERROR 1054 (42S22): Unknown column 'ename' in 'field list'
+mysql> select * from emp;
++-------+--------+-------+-----------+------+------------+---------+--------+------+------+------+
+| empno | name   | bonus | job       | mgr  | hiredate   | Salary  | deptno | loc  | hra  | comm |
++-------+--------+-------+-----------+------+------------+---------+--------+------+------+------+
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL | NULL | NULL |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL | NULL | NULL |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL | NULL | NULL |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL | NULL | NULL |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL | NULL | NULL |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL | NULL | NULL |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL | NULL | NULL |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL | NULL | NULL |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL | NULL | NULL |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL | NULL | NULL |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL | NULL | NULL |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL | NULL | NULL |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL | NULL | NULL |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL | NULL | NULL |
++-------+--------+-------+-----------+------+------------+---------+--------+------+------+------+
+14 rows in set (0.00 sec)
+
+mysql> select concat(name,' earning is ',Salary) from emp;
++------------------------------------+
+| concat(name,' earning is ',Salary) |
++------------------------------------+
+| SMITH earning is 800.00            |
+| ALLEN earning is 1600.00           |
+| WARD earning is 1250.00            |
+| JONES earning is 2975.00           |
+| MARTIN earning is 1250.00          |
+| BLAKE earning is 2850.00           |
+| CLARK earning is 2450.00           |
+| SCOTT earning is 3000.00           |
+| KING earning is 5000.00            |
+| TURNER earning is 1500.00          |
+| ADAMS earning is 1100.00           |
+| JAMES earning is 950.00            |
+| FORD earning is 3000.00            |
+| MILLER earning is 1300.00          |
++------------------------------------+
+14 rows in set (0.00 sec)
+
+mysql> select ltrim ('             cdac bandra             ');
++-------------------------------------------------+
+| ltrim ('             cdac bandra             ') |
++-------------------------------------------------+
+| cdac bandra                                     |
++-------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select rtrim ('             cdac bandra             ');
++-------------------------------------------------+
+| rtrim ('             cdac bandra             ') |
++-------------------------------------------------+
+|              cdac bandra                        |
++-------------------------------------------------+
+1 row in set (0.02 sec)
+
+mysql> select trim ('             cdac bandra             ');
+ERROR 1630 (42000): FUNCTION company.trim does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
+mysql> select trim('             cdac bandra             ');
++-----------------------------------------------+
+| trim('             cdac bandra             ') |
++-----------------------------------------------+
+| cdac bandra                                   |
++-----------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select lpad('shripad',10,'$');
++------------------------+
+| lpad('shripad',10,'$') |
++------------------------+
+| $$$shripad             |
++------------------------+
+1 row in set (0.02 sec)
+
+mysql> select rpad('aditya',20,'$');
++-----------------------+
+| rpad('aditya',20,'$') |
++-----------------------+
+| aditya$$$$$$$$$$$$$$  |
++-----------------------+
+1 row in set (0.02 sec)
+
+mysql> select ename,instr(name,'a') from emp;
+ERROR 1054 (42S22): Unknown column 'ename' in 'field list'
+mysql> alter table emp
+    -> change name ename varchar(20);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp;
++-------+--------+-------+-----------+------+------------+---------+--------+------+------+------+
+| empno | ename  | bonus | job       | mgr  | hiredate   | Salary  | deptno | loc  | hra  | comm |
++-------+--------+-------+-----------+------+------------+---------+--------+------+------+------+
+|  7369 | SMITH  |  NULL | CLERK     | 7902 | 1980-12-17 |  800.00 |     20 | NULL | NULL | NULL |
+|  7499 | ALLEN  |  NULL | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |     30 | NULL | NULL | NULL |
+|  7521 | WARD   |  NULL | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |     30 | NULL | NULL | NULL |
+|  7566 | JONES  |  NULL | MANAGER   | 7839 | 1981-04-02 | 2975.00 |     20 | NULL | NULL | NULL |
+|  7654 | MARTIN |  NULL | SALESMAN  | 7698 | 1981-09-28 | 1250.00 |     30 | NULL | NULL | NULL |
+|  7698 | BLAKE  |  NULL | MANAGER   | 7839 | 1981-05-01 | 2850.00 |     30 | NULL | NULL | NULL |
+|  7782 | CLARK  |  NULL | MANAGER   | 7839 | 1981-06-09 | 2450.00 |     10 | NULL | NULL | NULL |
+|  7788 | SCOTT  |  NULL | ANALYST   | 7566 | 1982-12-09 | 3000.00 |     20 | NULL | NULL | NULL |
+|  7839 | KING   |  NULL | PRESIDENT | NULL | 1981-11-17 | 5000.00 |     10 | NULL | NULL | NULL |
+|  7844 | TURNER |  NULL | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |     30 | NULL | NULL | NULL |
+|  7876 | ADAMS  |  NULL | CLERK     | 7788 | 1983-01-12 | 1100.00 |     20 | NULL | NULL | NULL |
+|  7900 | JAMES  |  NULL | CLERK     | 7698 | 1981-12-03 |  950.00 |     30 | NULL | NULL | NULL |
+|  7902 | FORD   |  NULL | ANALYST   | 7566 | 1981-12-03 | 3000.00 |     20 | NULL | NULL | NULL |
+|  7934 | MILLER |  NULL | CLERK     | 7782 | 1982-01-23 | 1300.00 |     10 | NULL | NULL | NULL |
++-------+--------+-------+-----------+------+------------+---------+--------+------+------+------+
+14 rows in set (0.00 sec)
+
+mysql> select ename,instr(ename,'a') from emp;
++--------+------------------+
+| ename  | instr(ename,'a') |
++--------+------------------+
+| SMITH  |                0 |
+| ALLEN  |                1 |
+| WARD   |                2 |
+| JONES  |                0 |
+| MARTIN |                2 |
+| BLAKE  |                3 |
+| CLARK  |                3 |
+| SCOTT  |                0 |
+| KING   |                0 |
+| TURNER |                0 |
+| ADAMS  |                1 |
+| JAMES  |                2 |
+| FORD   |                0 |
+| MILLER |                0 |
++--------+------------------+
+14 rows in set (0.02 sec)
+
+mysql> select sqrt('112');
++--------------------+
+| sqrt('112')        |
++--------------------+
+| 10.583005244258363 |
++--------------------+
+1 row in set (0.02 sec)
+
+mysql> select sqrt(225)
+    -> ;
++-----------+
+| sqrt(225) |
++-----------+
+|        15 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select rand() * 100;
++--------------------+
+| rand() * 100       |
++--------------------+
+| 41.943024044803366 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select floor(rand() * 100));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select floor(rand() * 100);
++---------------------+
+| floor(rand() * 100) |
++---------------------+
+|                  43 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select ceiling(123.23);
++-----------------+
+| ceiling(123.23) |
++-----------------+
+|             124 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select ceiling(123.10);
++-----------------+
+| ceiling(123.10) |
++-----------------+
+|             124 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select round(123.26,0);
++-----------------+
+| round(123.26,0) |
++-----------------+
+|             123 |
++-----------------+
+1 row in set (0.02 sec)
+
+mysql> select round(123.26,-1);
++------------------+
+| round(123.26,-1) |
++------------------+
+|              120 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select round(125.26,-1);
++------------------+
+| round(125.26,-1) |
++------------------+
+|              130 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> exit
