@@ -962,3 +962,4 @@ mysql> show tables;
 mysql> drop view v1;
 Query OK, 0 rows affected (0.03 sec)
 
+mysql> exit
