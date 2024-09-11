@@ -1,0 +1,147 @@
+1
+select * from emp where comm>sal;
+
+2
+select * from emp where comm>(sal*0.6);
+
+3
+select * from emp where job between 'clerk' and 'salesman' and deptno=10;
+
+4
+select * from emp where job='clerk' and deptno in (10,20);
+
+5
+select a.ename,b.ename as Manager_name from 
+emp a,emp b
+where a.empno = b.mgr;
+
+6
+select a.ename,b.ename as Manager_name from 
+emp a ,emp b
+where a.empno = b.mgr order by a.ename;
+
+7
+select * from emp where sal > (select avg(sal) from emp) order by deptno;
+
+8
+select date_format(curdate(),'%M');
+
+9
+select * from emp order by ename;
+
+10
+create table customer(
+email_address varchar(75) not null primary key,
+first_name varchar(75) not null,
+last_name varchar(50) not null,
+address1 varchar(50),
+address2 varchar(50),
+customer_zip varchar(10),
+area_code char(3),
+city varchar(20) check( city in('Nashik','Mumbai','Pune')),
+telephone_number char(10)
+);
+
+
+insert into customer values('aditya@gmail.com','aditya','shinde','solapur','mumbai','413006','123','solapur','9021028959'),
+('sohel@gmail.com','sohel','ajmeri','amravati','mumbai','415000','123','amravati','1234567890'),
+('ashish@gmail.com','ashish','shetty','hydrabad','mumbai','12345','123','amravati','1234567890');
+
+11
+update customer set city = 'pune' where city='solapur';
+
+12 
+delete from customer where city='pune';
+
+13
+truncate table customer;
+
+14
+alter table customer
+add email varchar(20);
+
+15
+select * from emp where job='manager' and deptno=10 or job = 'clerk' and deptno=20;
+
+16
+select * from emp where job not in ('manager','clerk') and sal>=2000;
+
+17
+select * from emp where sal between 1200 and 1400;
+
+18
+select * from emp where job='clerk' or job='analysts' or job='salesman';
+
+19
+select * from emp where job not in ('clerk','salesman','analysts');
+
+20
+select * from emp where comm is null or comm=0;
+
+21
+select * from emp where comm is not null;
+
+22
+select distinct(job) from emp where comm is not null;
+
+23
+select * from emp where comm is null or comm <100;
+
+24
+select ename,dname,d.loc from emp e
+left join
+dept d
+on (e.deptno = d.deptno);
+
+25
+delimiter //
+create procedure updatesl(in pename varchar(20))
+begin
+update emp set sal = sal+500 where ename = pename;
+end;
+//
+
+26
+delimiter //
+create procedure minmax(in pdeptno int(3))
+begin
+select 
+select max(sal),min(sal),sum(sal) from emp where deptno = pdeptno;
+
+end;
+//
+
+27
+delimiter //
+create procedure user(in pempno int(4))
+begin
+select ename,comm,hiredate from emp where empno=pempno;
+end ;
+//
+
+28
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
