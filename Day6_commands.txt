@@ -371,5 +371,28 @@ mysql> select a.ename,a.sal,b.ename as Manager_name,b.SAL as mgr_SAL
 | MILLER | 1300.00 | CLARK        | 2450.00 |
 +--------+---------+--------------+---------+
 13 rows in set (0.00 sec)
-
+mysql> select ename,sal,dname,loc,d.deptno
+    -> from emp e
+    -> left join
+    -> dept d
+    -> on (e.deptno = d.deptno);
++--------+---------+------------+----------+--------+
+| ename  | sal     | dname      | loc      | deptno |
++--------+---------+------------+----------+--------+
+| SMITH  |  800.00 | RESEARCH   | DALLAS   |     20 |
+| ALLEN  | 1600.00 | SALES      | CHICAGO  |     30 |
+| WARD   | 1250.00 | SALES      | CHICAGO  |     30 |
+| JONES  | 2975.00 | RESEARCH   | DALLAS   |     20 |
+| MARTIN | 1250.00 | SALES      | CHICAGO  |     30 |
+| BLAKE  | 2850.00 | SALES      | CHICAGO  |     30 |
+| CLARK  | 2450.00 | ACCOUNTING | NEW YORK |     10 |
+| SCOTT  | 3000.00 | RESEARCH   | DALLAS   |     20 |
+| KING   | 5000.00 | ACCOUNTING | NEW YORK |     10 |
+| TURNER | 1500.00 | SALES      | CHICAGO  |     30 |
+| ADAMS  | 1100.00 | RESEARCH   | DALLAS   |     20 |
+| JAMES  |  950.00 | SALES      | CHICAGO  |     30 |
+| FORD   | 3000.00 | RESEARCH   | DALLAS   |     20 |
+| MILLER | 1300.00 | ACCOUNTING | NEW YORK |     10 |
++--------+---------+------------+----------+--------+
+14 rows in set (0.00 sec)
 mysql> exit
