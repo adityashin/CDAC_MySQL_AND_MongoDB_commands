@@ -1,0 +1,19 @@
+--MySQL has tables so here in MongoDB here we have collections. 			Port:27017
+--to view all databases 
+show dbs
+
+	MySQL		    have		MongoDB
+--------------------------------------------------------------
+	tables					collections 
+	rows					documents 
+	columns				 	fields
+
+--to select database 
+use db_name
+
+--to view tables in the db
+show collections
+
+--to insert
+db.table_name.insertOne({})
+
