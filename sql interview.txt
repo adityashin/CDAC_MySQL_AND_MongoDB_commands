@@ -1,0 +1,144 @@
+filter --> where clause
+order by --> sort the result set in ascending or descending order
+
+AND operator --> displays a record if all the conditions are TRUE. The WHERE clause can contain one or many AND operators.All Conditions Must Be True
+
+OR operator --> displays a record if any of the conditions are TRUE.
+
+
+***Combining AND and OR
+You can combine the AND and OR operators.
+-->SELECT * FROM Customers
+WHERE Country = 'Spain' AND (CustomerName LIKE 'G%' OR CustomerName LIKE 'R%');
+
+Without parenthesis, the select statement will return all customers from Spain that starts with a "G", plus all customers that starts with an "R", regardless of the country value:
+because the or becomes separate statement;
+
+
+NOT--> while using not make sure that you write NOT exactly after where after that columnname
+
+
+NULL Value-->A field with a NULL value is a field with no value.
+*If a field in a table is optional, it is possible to insert a new record or update a record without adding a value to this field. Then, the field will be saved with a NULL value.
+*Note: A NULL value is different from a zero value or a field that contains spaces. A field with a NULL value is one that has been left blank during record creation!
+*Tip: Always use IS NULL to look for NULL values.
+
+
+Update-->
+Be careful when updating records. If you omit the WHERE clause, ALL records will be updated!
+you can update multiple columsn using comma(,) after set operator
+
+SQL DELETE-->
+The DELETE statement is used to delete existing records in a table.
+*'Note: Be careful when deleting records in a table! Notice the WHERE clause in the DELETE statement. The WHERE clause specifies which record(s) should be deleted. If you omit the WHERE clause, all records in the table will be deleted!
+
+SQL SELECT TOP Clause-->The SELECT TOP clause is used to specify the number of records to return.
+*The SELECT TOP clause is useful on large tables with thousands of records. Returning a large number of records can impact performance.
+*Note: Not all database systems support the SELECT TOP clause. MySQL supports the LIMIT clause to select a limited number of records, while Oracle uses FETCH FIRST n ROWS ONLY and ROWNUM.
+
+
+***SQL Aggregate Functions--->(Remeber Aggregate functions means group by clause)
+*An aggregate function is a function that performs a calculation on a set of values, and returns a single value.
+*Aggregate functions are often used with the GROUP BY clause of the SELECT statement. The GROUP BY clause splits the result-set into groups of values and the aggregate function can be used to return a single value for each group.
+*The most commonly used SQL aggregate f			unctions are:
+
+MIN() - returns the smallest value within the selected column
+MAX() - returns the largest value within the selected column
+COUNT() - returns the number of rows in a set
+SUM() - returns the total sum of a numerical column
+AVG() - returns the average value of a numerical column
+Aggregate functions ignore null values (except for COUNT()).
+
+Set Column Name (Alias)--->
+When you use MIN() or MAX(), the returned column will not have a descriptive name. To give the column a descriptive name, use the AS keyword;
+
+SQL Wildcard Characters-->
+*A wildcard character is used to substitute one or more characters in a string.
+*Wildcard characters are used with the LIKE operator. The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
+%	Represents zero or more characters
+_	Represents a single character
+[]	Represents any single character within the brackets * --->select * from suppliers where suppliername like '[aeiou]%';
+^	Represents any character not in the brackets *
+-	Represents any single character within the specified range * --->select * from suppliers where suppliername like '[a-z]';
+{}	Represents any escaped character **
+
+
+The SQL IN Operator--->The IN operator allows you to specify multiple values in a WHERE clause.
+*The IN operator is a shorthand for multiple OR conditions.
+
+The SQL BACKUP DATABASE Statement--->
+*The BACKUP DATABASE statement is used in SQL Server to create a full back up of an existing SQL database
+
+The SQL DROP TABLE Statement--->
+*The DROP TABLE statement is used to drop an existing table in a database.
+
+SQL TRUNCATE TABLE--->
+*The TRUNCATE TABLE statement is used to delete the data inside a table, but not the table itself.
+
+SQL ALTER TABLE Statement-->
+*The ALTER TABLE statement is used to add, delete, or modify columns in an existing table.
+*The ALTER TABLE statement is also used to add and drop various constraints on an existing table.
+
+ALTER TABLE - ADD Column--->
+To add a column in a table
+
+ALTER TABLE - DROP COLUMN--->
+To delete a column in a table
+
+ALTER TABLE - RENAME COLUMN--->
+To rename a column in a table
+
+ALTER TABLE - ALTER/MODIFY DATATYPE--->
+To change the data type of a column in a table
+
+SQL Constraints--->
+*SQL constraints are used to specify rules for data in a table.
+
+SQL Create Constraints--->
+*Constraints can be specified when the table is created with the CREATE TABLE statement, or after the table is created with the ALTER TABLE statement.
+
+SQL NOT NULL Constraint--->
+*By default, a column can hold NULL values.
+*The NOT NULL constraint enforces a column to NOT accept NULL values.
+*This enforces a field to always contain a value, which means that you cannot insert a new record, or update a record without adding a value to this field.
+
+SQL UNIQUE Constraint--->
+*The UNIQUE constraint ensures that all values in a column are different.
+*Both the UNIQUE and PRIMARY KEY constraints provide a guarantee for uniqueness for a column or set of columns.
+*A PRIMARY KEY constraint automatically has a UNIQUE constraint.
+*However, you can have many UNIQUE constraints per table, but only one PRIMARY KEY constraint per table.
+
+****naming a unique constraint
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+---> CONSTRAINT UC_Person UNIQUE (ID,LastName)
+);
+
+
+****Normal definition without naming
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+---> UNIQUE (ID)
+);
+
+**DROP a UNIQUE Constraint
+To drop a UNIQUE constraint, use the following SQL
+MySQL:--->
+ALTER TABLE Persons
+DROP INDEX UC_Person;	
+
+SQL Server / Oracle / MS Access:--->
+ALTER TABLE Persons
+DROP CONSTRAINT UC_Person;
+
+
+SQL FOREIGN KEY Constraint--->
+*The FOREIGN KEY constraint is used to prevent actions that would destroy links between tables.
+*A FOREIGN KEY is a field (or collection of fields) in one table, that refers to the PRIMARY KEY in another table.
+*The table with the foreign key is called the child table, and the table with the primary key is called the referenced or parent table.
