@@ -167,6 +167,21 @@ from customer
 inner join orders
 on customer.customer_id = orders.customer_id;
 
+	-- Second max salary 
+select Max(sal)
+from emp 
+where sal < (select Max(Sal) from emp);
+
+select sal 
+from emp
+order by sal desc 
+limit 1,1;
+
+select ename as even_Employees
+from emp
+where empno % 2 = 0;
+
+select * from emp;
 
 
 
