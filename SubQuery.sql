@@ -34,3 +34,16 @@ where id not in (select productid from tblproductsales);
 select id,name,description,
 (select sum(quantitysold) from tblproductsales where productid = tblproducts.id) as QuantitySold
 from tblproducts;
+
+-- 3rd highest salary
+use company;
+select sal as Third_highest_Salary
+from emp
+order by sal desc
+limit 3,1;
+
+
+-- Second highest salary
+select max(sal) as Second_Highest_Salary
+from emp
+where sal < (select max(sal) from emp);
