@@ -172,5 +172,9 @@ The SQL GROUP BY Statement--->
 **The GROUP BY statement groups rows that have the same values into summary rows, like "find the number of customers in each country".
 **The GROUP BY statement is often used with aggregate functions (COUNT(), MAX(), MIN(), SUM(), AVG()) to group the result-set by one or more columns.
 
+🧠 Rule of Thumb:
+👉 Every column in SELECT must be either inside an aggregate function OR included in GROUP BY (when using ONLY_FULL_GROUP_BY).
+
+
 The SQL HAVING Clause--->
 **The HAVING clause was added to SQL because the WHERE keyword cannot be used with aggregate functions.
