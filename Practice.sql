@@ -183,5 +183,20 @@ where empno % 2 = 0;
 
 select * from emp;
 
+-- select last employee of the company
+	
+select 
+	*
+from emp
+order by empno desc
+limit 1;
+
+select max(empno)
+from emp;
+
+select empno
+from emp
+where empno < (select max(empno) from emp)
+limit 1;
 
 
