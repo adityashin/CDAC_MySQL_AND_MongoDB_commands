@@ -1,0 +1,61 @@
+
+
+SQL Developer interview questions cover a range of topics, from basic SQL syntax to advanced database concepts and optimization techniques. Common questions include those related to data manipulation, joins, indexes, stored procedures, and data integrity. Additionally, interviewers may probe your understanding of normalization, performance tuning, and database design principles. [1, 2]
+
+Here's a more detailed breakdown of common SQL Developer interview questions:
+
+Basic SQL Concepts: [1, 2]
+What is SQL?
+What is a database?
+What are the different types of SQL?
+What are the basic SQL commands (DDL, DML, DCL, TCL)?
+What are primary keys and foreign keys?
+What are indexes and why are they important?
+What are joins and different types of joins? [1, 2, 3, 4]
+
+Data Manipulation and Queries: [2, 4]
+How to retrieve data from a table?
+How to insert, update, and delete data in a table?
+How to filter data using WHERE clause?
+How to sort data using ORDER BY clause?
+How to group data using GROUP BY clause?
+How to use aggregate functions (SUM, AVG, COUNT, MIN, MAX)?
+What are subqueries and how to use them?
+What are stored procedures and functions?
+How to create views? [1, 2, 4]
+
+Database Design and Optimization: [1, 2]
+What is normalization and why is it important?
+What are data constraints?
+How to optimize SQL queries for performance?
+What are different types of indexes and when to use them?
+How to handle large datasets?
+What is the difference between clustered and non-clustered indexes?
+How to analyze execution plans? [1, 2, 4, 5]
+
+Advanced Concepts: [2, 4]
+What are triggers?
+What are cursors?
+What are transactions and ACID properties?
+What are CTEs (Common Table Expressions)?
+What are window functions?
+What are different isolation levels in SQL?
+What are OLTP and OLAP?
+What are different types of relationships in SQL?
+What are the differencesbetween SQL and PL/SQL? [2, 3, 4, 6, 7, 8]
+
+Coding Challenges: [1, 9]
+Write a SQL query to find the nth highest salary.
+Write a SQL query to find duplicate records.
+Write a SQL query to find the difference in days between two dates.
+Write a SQL query to pivot data.
+Write a SQL query to find employees who have not been assigned to any project.
+Write a SQL query to find the manager for each employee. [1, 4, 9]
+
+Tips for Preparing: [1, 2]
+Review fundamental SQL concepts.
+Practice writing SQL queries.
+Understand database design principles.
+Familiarize yourself with different types of joins, indexes, and stored procedures.
+Practice coding challenges.
+Be prepared to discuss performance optimization and database design choices. 
