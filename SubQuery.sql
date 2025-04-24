@@ -22,6 +22,43 @@ insert into tblproductsales(productid,unitprice,quantitysold) values(1,999,78),
 (2,456,77),
 (3,369,23);
 
+
+select *
+from tblproducts;
+
+select * 
+from tblproductsales;
+
+-- select products who haven't sold yet
+select TP.id , TP.name, TP.description
+from tblproducts TP
+where TP.id not in (select distinct(productid) from tblproductsales); 
+--                   👆👆👆👆👆👆👆👆👆👆👆👆👆👆 inner query 👆👆👆👆👆
+--							OR
+select tp.id,tp.name,tp.description,tps.productid
+from tblproducts tp
+left join tblproductsales tps on tp.id = tps.productid
+where tps.id is null;
+
+-- write a query to 
+
+select name,(select sum(quantitysold) from tblproductsales where productid = tblproducts.id) as totalsold
+from tblproducts;
+
+select name,sum(quantitysold)
+from tblproducts
+left join tblproductsales on tblproducts.id = tblproductsales.productid
+group by name;
+
+
+
+
+
+
+
+
+
+
 select * from tblproductsales;
 
 -- start
