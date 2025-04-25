@@ -2,15 +2,15 @@ use company;
 
 create table tblproducts(
 	id int primary key auto_increment,
-    name varchar(250),
-    description varchar(250)
+  name varchar(250),
+  description varchar(250)
 );
 create table tblproductsales(
 	id int primary key auto_increment,
-    productid int, 
-    unitprice int,
-    quantitysold int,
-    Foreign key (productid) references tblproducts(id)
+  productid int, 
+  unitprice int,
+  quantitysold int,
+  Foreign key (productid) references tblproducts(id)
 );
 insert into tblproducts(name,description) values('48 inch LED TV','made by sony'),('56 inch LCD TC','made by samsung'),('58 inch rollable TV','Made by LG');
 insert into tblproducts(name,description) values('BOaT Speaker','My by BOAT');
@@ -29,7 +29,9 @@ from tblproducts;
 select * 
 from tblproductsales;
 
+
 -- select products who haven't sold yet
+--   👇👇👇👇👇👇👇👇👇👇👇👇👇👇Outer Query👇👇👇👇👇👇👇👇👇👇
 select TP.id , TP.name, TP.description
 from tblproducts TP
 where TP.id not in (select distinct(productid) from tblproductsales); 
@@ -40,8 +42,7 @@ from tblproducts tp
 left join tblproductsales tps on tp.id = tps.productid
 where tps.id is null;
 
--- write a query to 
-
+-- write a query to find how many products totally sold
 select name,(select sum(quantitysold) from tblproductsales where productid = tblproducts.id) as totalsold
 from tblproducts;
 
@@ -49,15 +50,6 @@ select name,sum(quantitysold)
 from tblproducts
 left join tblproductsales on tblproducts.id = tblproductsales.productid
 group by name;
-
-
-
-
-
-
-
-
-
 
 select * from tblproductsales;
 
@@ -78,7 +70,6 @@ select sal as Third_highest_Salary
 from emp
 order by sal desc
 limit 3,1;
-
 
 -- Second highest salary
 select max(sal) as Second_Highest_Salary
