@@ -75,3 +75,36 @@ limit 3,1;
 select max(sal) as Second_Highest_Salary
 from emp
 where sal < (select max(sal) from emp);
+
+
+-- 26/04/2025
+-- 3 types of subqueries
+-- 🤩scalar subquery
+-- it always returns 1 row and 1 column
+-- here below query return only one value with one row and one column so its a scalar subquery
+-- Find the average salary of emp
+select * 
+from emp 
+where sal > (select avg(sal) from emp);
+
+
+
+-- 🤩Multi Row Subquery in which we have 2 types
+-- subquery which returns 1 row and 1 column
+-- subquery which return multiple rows and multiple columns
+ 
+-- find employees from each dept with the maximum salary
+-- first we will find the max salary from every dept
+-- then we will compare the employees from those deptno and with same salary so...
+select *
+from emp
+where (deptno,sal) in (select deptno,max(sal)
+						from emp 
+						group by deptno);
+                        
+                        
+-- find employees who dont have any dept;
+ select * 
+from emp
+where deptno not in (select id from dept);
+
